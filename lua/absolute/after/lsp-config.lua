@@ -117,6 +117,27 @@ lspconfig["pyright"].setup({
     on_attach = on_attach,
 })
 
+-- configure docker server
+lspconfig["dockerls"].setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+})
+
+-- configure json server
+lspconfig["jsonls"].setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+})
+
+
+-- configure vue server
+lspconfig["volar"].setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+    filetypes = { "vue" },
+})
+
+-- configure rust server
 lspconfig.rust_analyzer.setup({
     -- Server-specific settings. See `:help lspconfig-setup`
     on_attach = on_attach,
@@ -147,4 +168,35 @@ lspconfig["lua_ls"].setup({
             },
         },
     },
+})
+
+
+-- configure css server
+lspconfig["cssls"].setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+})
+
+-- configure htmx server
+lspconfig["htmx"].setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+})
+
+--configure docker file server
+lspconfig["dockerls"].setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+})
+
+-- configure docker compose server
+lspconfig["docker_compose_language_service"].setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+})
+
+-- configure eslint server
+lspconfig["eslint"].setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
 })
