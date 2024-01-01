@@ -1,6 +1,3 @@
 return {
-	"nvim-treesitter/playground",
-
-
-
+    "nvim-treesitter/playground",
 }

@@ -1,7 +1,8 @@
 return {
-    "nvim-tree/nvim-tree.lua",
+    "akinsho/bufferline.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    version = "*",
     config = function()
-        require("absolute.after.nvim-tree");
+        require("absolute.after.bufferline")
     end
 }
