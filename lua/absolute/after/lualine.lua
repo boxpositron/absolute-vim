@@ -45,6 +45,34 @@ local my_lualine_theme = {
     },
 }
 
+
+function GetPoetvStatusLine()
+    -- Get the poetv statusline
+    -- If poetv is not active, return empty string
+
+    if IsPoetvActive() then
+        local poetv_name = vim.g.poetv_name
+        local poetv_statusline_symbol = vim.g.poetv_statusline_symbol
+
+        local result = string.sub(poetv_name, 1, 20) .. " " .. poetv_statusline_symbol
+
+        return result
+    else
+        return ""
+    end
+end
+
+function IsPoetvActive()
+    -- Check if vim.g.poetv_name exists
+    -- If it does, then poetv is active
+
+    if vim.g.poetv_name ~= nil then
+        return true
+    else
+        return false
+    end
+end
+
 -- configure lualine with modified theme
 lualine.setup({
     options = {
@@ -52,6 +80,11 @@ lualine.setup({
     },
     sections = {
         lualine_x = {
+            {
+                GetPoetvStatusLine,
+                cond = IsPoetvActive,
+                color = { fg = "#ff9e64" },
+            },
             {
                 lazy_status.updates,
                 cond = lazy_status.has_updates,
