@@ -1,5 +1,3 @@
-vim.g.mapleader = " "
-
 vim.keymap.set("n", "<leader>\\", "<cmd>NvimTreeToggle<CR>") -- toggle file explorer
 
 

@@ -117,6 +117,13 @@ lspconfig["pyright"].setup({
     on_attach = on_attach,
 })
 
+-- configure python lsp
+lspconfig["pylsp"].setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+})
+
+
 -- configure docker server
 lspconfig["dockerls"].setup({
     capabilities = capabilities,
