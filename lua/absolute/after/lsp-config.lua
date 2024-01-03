@@ -111,14 +111,22 @@ lspconfig["emmet_ls"].setup({
     filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
 })
 
--- -- configure python server
--- lspconfig["pyright"].setup({
---     capabilities = capabilities,
---     on_attach = on_attach,
--- })
-
 -- configure python lsp
 lspconfig["pylsp"].setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+    pylsp = {
+        plugins = {
+            jedi_completion = {
+                include_params = true
+            }
+        }
+
+    }
+})
+
+-- configure jedi language server
+lspconfig["jedi_language_server"].setup({
     capabilities = capabilities,
     on_attach = on_attach,
 })

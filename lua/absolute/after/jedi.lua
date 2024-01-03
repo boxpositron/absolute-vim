@@ -1,3 +1,8 @@
+
+vim.g["jedi#popup_on_dot"] = 0
+
+
+-- Keybindings
 vim.g["jedi#goto_command"] = ""       -- "<leader>d"
 vim.g["jedi#goto_assignments_command"] = "<leader>gD"
 vim.g["jedi#goto_stubs_command"] = "" -- "<leader>s"

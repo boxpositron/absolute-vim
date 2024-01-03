@@ -15,3 +15,8 @@ vim.keymap.set("n", "<leader>pva", "<cmd>PoetvActivate<CR>", opts)
 -- Poetv: Deactivate Virtualenv
 opts.desc = "Poetv: Deactivate virtualenv"
 vim.keymap.set("n", "<leader>pvd", "<cmd>PoetvDeactivate<CR>", opts)
+
+-- Setup Autocommands
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" },
+    { pattern = { "*/.venv/*", "*.py" }, callback = function() vim.cmd([[ PoetvActivate]]) end })
