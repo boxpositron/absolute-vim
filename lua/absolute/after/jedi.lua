@@ -1,5 +1,5 @@
 
-vim.g["jedi#popup_on_dot"] = 0
+vim.g["jedi#popup_on_dot"] = 1
 
 
 -- Keybindings

@@ -63,6 +63,7 @@ opts.desc = "Disable Q - Nothing Good Ever Happens"
 vim.keymap.set("n", "Q", "<nop>", opts)
 
 -- Format document with LSP Formatter
+
 opts.desc = "Format document with LSP Formatter"
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, opts)
 
