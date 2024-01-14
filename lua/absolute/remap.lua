@@ -3,7 +3,6 @@ local opts = { noremap = true, silent = true }
 opts.desc = "Toggle File Explorer"
 vim.keymap.set("n", "<leader>\\", "<cmd>NvimTreeToggle<CR>", opts) -- toggle file explorer
 
-
 -- Move selected line / block of text in visual mode up
 opts.desc = "Move selected line / block of text in visual mode up"
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", opts)
@@ -12,11 +11,9 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", opts)
 opts.desc = "Move selected line / block of text in visual mode down"
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", opts)
 
-
 -- Join current line with the line below it
 opts.desc = "Join current line with the line below it"
 vim.keymap.set("n", "J", "mzJ`z", opts)
-
 
 -- Move half page down
 opts.desc = "Move half page down"
@@ -46,16 +43,13 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], opts)
 opts.desc = "Copy current line into system clipboard"
 vim.keymap.set("n", "<leader>Y", [["+Y]], opts)
 
-
 -- Delete (blackhole)
 opts.desc = "Delete current line (blackhole)"
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], opts)
 
-
 -- Alternate Escape (Easy to Reach)
 opts.desc = "Alternate Escape (Easy to Reach)"
 vim.keymap.set("i", "<C-c>", "<Esc>", opts)
-
 
 -- Disable Q - Nothing Good Ever Happens
 -- Q is normally used to enable Ex mode. We dont want that
@@ -79,7 +73,6 @@ vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, opts)
 opts.desc = "Regex Replace"
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], opts)
 
-
 -- Source File Keymap
 opts.desc = "Source File"
 vim.keymap.set("n", "<leader><leader>", function()
@@ -88,4 +81,4 @@ end, opts)
 
 -- Manage VIM Maximizer
 opts.desc = "Toggle TMUX Pane"
-vim.keymap.set("n", "<leader>sm", "<cmd>MaximizerToggle<CR>", opts)
+vim.keymap.set("n", "<leader>`", "<cmd>MaximizerToggle<CR>", opts)
