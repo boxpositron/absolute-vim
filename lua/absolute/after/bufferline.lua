@@ -14,7 +14,7 @@ vim.api.nvim_set_keymap("n", "<leader>4", "<cmd>BufferLineGoToBuffer 4<CR>", opt
 
 
 -- I want to be to close the current tab with a single keypress
-vim.api.nvim_set_keymap("n", "<leader>w", "<cmd>tabclose<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>tc", "<cmd>tabclose<CR>", opts)
 
 -- I want to be able to create a new tab with a single keypress
-vim.api.nvim_set_keymap("n", "<leader>t", "<cmd>tabnew<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>tn", "<cmd>tabnew<CR>", opts)
