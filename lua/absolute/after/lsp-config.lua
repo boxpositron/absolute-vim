@@ -1,29 +1,28 @@
 -- Setup language servers.
-local lspconfig    = require('lspconfig')
+local lspconfig = require("lspconfig")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
-local opts         = { noremap = true, silent = true }
-local on_attach    = function(client, bufnr)
+local opts = { noremap = true, silent = true }
+local on_attach = function(_client, bufnr)
     opts.buffer = bufnr
 
     -- Enable completion triggered by <c-x><c-o>
     -- vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
-
     opts.desc = "Go to declaration"
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 
     opts.desc = "Go to definitions"
-    vim.keymap.set('n', 'gd', "<cmd>Telescope lsp_definitions<CR>", opts)
+    vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
 
     opts.desc = "Show documentation for what is under cursor"
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
     opts.desc = "Show LSP Implementation"
-    vim.keymap.set('n', 'gi', "<cmd>Telescope lsp_implementations<CR>", opts)
+    vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
 
     opts.desc = "Get Help"
-    vim.keymap.set('n', '<C-h>', vim.lsp.buf.signature_help, opts)
+    vim.keymap.set("n", "<C-?>", vim.lsp.buf.signature_help, opts)
 
     -- vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
     -- vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
@@ -32,20 +31,20 @@ local on_attach    = function(client, bufnr)
     -- end, opts)
 
     opts.desc = "Show LSP type definitions"
-    vim.keymap.set('n', 'gt', "<cmd>Telescope lsp_type_definitions<CR>", opts)
+    vim.keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
 
     opts.desc = "Smart rename"
-    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
 
     opts.desc = "See available code actions"
-    vim.keymap.set({ 'n', 'v' }, '<leader>vca', vim.lsp.buf.code_action, opts)
+    vim.keymap.set({ "n", "v" }, "<leader>vca", vim.lsp.buf.code_action, opts)
 
     opts.desc = "Show LSP references"
-    vim.keymap.set('n', '<leader>vrr', "<cmd>Telescope lsp_references<CR>", opts)
+    vim.keymap.set("n", "<leader>vrr", "<cmd>Telescope lsp_references<CR>", opts)
 
     opts.desc = "Format File"
-    vim.keymap.set('n', '<leader>f', function()
-        vim.lsp.buf.format { async = true }
+    vim.keymap.set("n", "<leader>f", function()
+        vim.lsp.buf.format({ async = true })
     end, opts)
 
     opts.desc = "Restart LSP"
@@ -55,12 +54,11 @@ end
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
 -- Change the Diagnostic symbols in the sign column (gutter)
-local signs        = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
-
 
 -- configure html server
 lspconfig["html"].setup({
@@ -103,7 +101,6 @@ lspconfig["svelte"].setup({
     end,
 })
 
-
 -- configure emmet language server
 lspconfig["emmet_ls"].setup({
     capabilities = capabilities,
@@ -118,11 +115,10 @@ lspconfig["pylsp"].setup({
     pylsp = {
         plugins = {
             jedi_completion = {
-                include_params = true
-            }
-        }
-
-    }
+                include_params = true,
+            },
+        },
+    },
 })
 
 -- configure jedi language server
@@ -130,7 +126,6 @@ lspconfig["jedi_language_server"].setup({
     capabilities = capabilities,
     on_attach = on_attach,
 })
-
 
 -- configure docker server
 lspconfig["dockerls"].setup({
@@ -143,7 +138,6 @@ lspconfig["jsonls"].setup({
     capabilities = capabilities,
     on_attach = on_attach,
 })
-
 
 -- configure vue server
 lspconfig["volar"].setup({
@@ -158,11 +152,9 @@ lspconfig.rust_analyzer.setup({
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
-        ['rust-analyzer'] = {},
+        ["rust-analyzer"] = {},
     },
 })
-
-
 
 -- configure lua server (with special settings)
 lspconfig["lua_ls"].setup({
@@ -184,7 +176,6 @@ lspconfig["lua_ls"].setup({
         },
     },
 })
-
 
 -- configure css server
 lspconfig["cssls"].setup({
