@@ -14,15 +14,13 @@ git clone https://github.com/boxpositron/absolute-vim ~/.config/nvim --depth 1 &
 
 ```
 
-## Important
-
-I built this to be compatible with Apple Silicon. It should work with other platforms. I've just
-removed any incompatible plugins.
-
 ## Components
 
 ### Package Manager
+
 I'm using lazy.nvim to manage all the packages. I setup the project to use the after directory as
 well. Lazy does not need to use this but I set it up incase you want to switch to a different
 package manager like packer. You'll notice I require the plugin file from after in the config
 function for the plugin. It's worked for me and it keeps things organized.
+
+TODO: List out Plugins
