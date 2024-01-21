@@ -28,7 +28,7 @@ local on_attach = function(client, bufnr)
     vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
 
     opts.desc = "Get Help"
-    vim.keymap.set("n", "<C-?>", vim.lsp.buf.signature_help, opts)
+    vim.keymap.set("n", "<leader>gh", vim.lsp.buf.signature_help, opts)
 
     -- vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
     -- vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
@@ -111,7 +111,7 @@ lspconfig["svelte"].setup({
 lspconfig["emmet_ls"].setup({
     capabilities = capabilities,
     on_attach = on_attach,
-    filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
+    filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte", "vue" },
 })
 
 -- configure python lsp
