@@ -1,7 +1,7 @@
 local opts = { noremap = true, silent = true }
 
-opts.desc = "Toggle File Explorer"
-vim.keymap.set("n", "<leader>\\", "<cmd>NvimTreeToggle<CR>", opts) -- toggle file explorer
+opts.desc = "Show Cheatsheet"
+vim.keymap.set("n", "<leader>\\", "<cmd>Cheatsheet<CR>", opts) -- toggle file explorer
 
 -- Move selected line / block of text in visual mode up
 opts.desc = "Move selected line / block of text in visual mode up"
