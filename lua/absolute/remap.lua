@@ -81,4 +81,4 @@ end, opts)
 
 -- Manage VIM Maximizer
 opts.desc = "Toggle TMUX Pane"
-vim.keymap.set("n", "<leader>`", "<cmd>MaximizerToggle<CR>", opts)
+vim.keymap.set("n", "<leader>`", "<cmd>NvimTreeToggle<CR>", opts)
