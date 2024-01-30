@@ -113,25 +113,38 @@ lspconfig["emmet_ls"].setup({
     on_attach = on_attach,
     filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte", "vue" },
 })
-
 -- configure python lsp
 lspconfig["pylsp"].setup({
+    filetypes = { "python" },
     capabilities = capabilities,
     on_attach = on_attach,
     pylsp = {
-        plugins = {
-            jedi_completion = {
-                include_params = true,
+        pylsp = {
+            plugins = {
+                rope_autoimport = {
+                    enabled = true,
+                    completions = { enabled = true },
+                },
+                flake8 = { enabled = true },
+                jedi_completion = {
+                    include_params = true,
+                },
+                pyflakes = { enabled = true },
+                pycodestyle = {
+                    enabled = true,
+                    ignore = { "E231" },
+                    maxLineLength = 150,
+                },
             },
         },
     },
 })
-
--- configure jedi language server
-lspconfig["jedi_language_server"].setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
-})
+--
+-- -- configure jedi language server
+-- lspconfig["jedi_language_server"].setup({
+--     capabilities = capabilities,
+--     on_attach = on_attach,
+-- 	})
 
 -- configure docker server
 lspconfig["dockerls"].setup({
