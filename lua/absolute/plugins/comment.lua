@@ -1,5 +1,7 @@
 return {
     "numToStr/Comment.nvim",
     event = { "BufReadPre", "BufNewFile" },
-    config = true
+    config = function()
+        require("absolute.after.comment")
+    end,
 }
