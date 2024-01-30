@@ -3,6 +3,9 @@ local opts = { noremap = true, silent = true }
 opts.desc = "Show Cheatsheet"
 vim.keymap.set("n", "<leader>\\", "<cmd>Cheatsheet<CR>", opts) -- toggle file explorer
 
+opts.desc = "Select All"
+vim.keymap.set("n", "<leader>a", "gg0vG$", opts) -- select all
+
 -- Move selected line / block of text in visual mode up
 opts.desc = "Move selected line / block of text in visual mode up"
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", opts)
