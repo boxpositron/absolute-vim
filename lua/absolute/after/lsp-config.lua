@@ -13,7 +13,7 @@ local on_attach = function(client, bufnr)
     end
 
     -- Enable completion triggered by <c-x><c-o>
-    -- vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+    -- vim.bo[opts.buffer].omnifunc = "v:lua.vim.lsp.omnifunc"
 
     opts.desc = "Go to declaration"
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
@@ -131,7 +131,6 @@ lspconfig["pylsp"].setup({
                 },
                 pyflakes = { enabled = true },
                 pycodestyle = {
-                    enabled = true,
                     ignore = { "E231" },
                     maxLineLength = 150,
                 },
