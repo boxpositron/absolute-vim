@@ -1,7 +1,9 @@
 local toggle_term = require("toggleterm")
 local Terminal = require("toggleterm.terminal").Terminal
 
-toggle_term.setup()
+toggle_term.setup({
+    direction = "float",
+})
 
 local opts = { noremap = true, silent = true }
 
@@ -28,7 +30,7 @@ function _LAZYGIT_TOGGLE()
 end
 
 opts.desc = "Open lazygit"
-vim.api.nvim_set_keymap("n", "<leader>gl", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>gs", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 
 opts.desc = "Open a terminal"
 vim.api.nvim_set_keymap("n", "<C-`>", "<cmd>ToggleTerm<CR>", opts)
