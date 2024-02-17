@@ -3,6 +3,9 @@ local opts = { noremap = true, silent = true }
 opts.desc = "Show Cheatsheet"
 vim.keymap.set("n", "<leader>\\", "<cmd>Cheatsheet<CR>", opts) -- toggle file explorer
 
+opts.desc = "Show Keymap"
+vim.keymap.set("n", "<leader>?", "<cmd>Telescope keymaps<CR>", opts) -- toggle file explorer
+
 opts.desc = "Select All"
 vim.keymap.set("n", "<leader>a", "gg0vG$", opts) -- select all
 
