@@ -7,7 +7,7 @@ opts.desc = "Show Keymap"
 vim.keymap.set("n", "<leader>?", "<cmd>Telescope keymaps<CR>", opts) -- toggle file explorer
 
 opts.desc = "Select All"
-vim.keymap.set("n", "<leader>a", "gg0vG$", opts) -- select all
+vim.keymap.set("n", "<C-a>", "gg0vG$", opts) -- select all
 
 -- Move selected line / block of text in visual mode up
 opts.desc = "Move selected line / block of text in visual mode up"
