@@ -77,7 +77,11 @@ vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, opts)
 
 -- Search Regex Keymap
 opts.desc = "Regex Replace"
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], opts)
+vim.keymap.set("n", "<leader>sr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], opts)
+
+
+opts.desc = "Replace selected text"
+vim.keymap.set("v", "<leader>ss", [[:s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], opts)
 
 -- Source File Keymap
 opts.desc = "Source File"
