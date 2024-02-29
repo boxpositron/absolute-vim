@@ -14,13 +14,54 @@ git clone https://github.com/boxpositron/absolute-vim ~/.config/nvim --depth 1 &
 
 ```
 
-## Components
+## Dependencies
 
-### Package Manager
+### Binaries
 
-I'm using lazy.nvim to manage all the packages. I setup the project to use the after directory as
-well. Lazy does not need to use this but I set it up incase you want to switch to a different
-package manager like packer. You'll notice I require the plugin file from after in the config
-function for the plugin. It's worked for me and it keeps things organized.
+> Improved Git Experience
 
-TODO: List out Plugins
+- [lazygit](https://github.com/jesseduffield/lazygit)
+
+> Beautiful Code Screenshots
+
+- [silicon](https://github.com/Aloxaf/silicon)
+
+### Fonts
+
+- [Noto Emoji](https://fonts.google.com/noto/specimen/Noto+Emoji)
+- [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono)
+
+## Plugins
+
+- CheatSheet
+- ColorScheme
+- Comment
+- DAP
+- Dashboard
+- GitIgnore
+- GitSigns
+- Harpoon
+- Incline
+- IndentBlankline
+- Jedi
+- KeySeer
+- LuaLine
+- Mason
+- Mini
+- NoneLS
+- NvimBQF
+- NvimCMP
+- NvimSilicon
+- NvimSurround
+- NvimTree
+- NvimTreesitter
+- PoetV
+- SuperTab
+- TailwindCSS Colors
+- TailwindSorter
+- Telescope
+- TodoComments
+- ToggleTerm
+- TreeSJ
+- Trouble
+- UndoTree
