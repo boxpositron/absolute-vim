@@ -47,3 +47,4 @@ luac.out
 
 .env
 .DS_Store
+/Screenshots/*
