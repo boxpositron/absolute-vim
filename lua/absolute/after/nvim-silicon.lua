@@ -1,69 +1,57 @@
 local silicon = require("silicon")
+local current_os = require("absolute.utils.detect-os")
+local get_git_root = require("absolute.utils.get-git-root")
 
-local home = os.getenv("HOME")
+local os_name = current_os.detect()
+local supported_os = current_os.supported
 
 local function generate_file_name()
-    -- Generate a file name
-    local file_name = os.date("!%Y-%m-%dT%H-%M-%S") .. "_code.png"
-    return "./" .. file_name
+	-- Generate a file name
+	local file_name = os.date("!%Y-%m-%dT%H-%M-%S") .. "_code.png"
+
+	-- Project root
+	local project_root = get_git_root()
+
+	-- Create screenshots directory if it doesn't exist in the local directory
+	local screenshot_dir = project_root .. "/Screenshots"
+	if vim.fn.isdirectory(screenshot_dir) == 0 then
+		vim.fn.mkdir(screenshot_dir, "p")
+	end
+
+	-- Return the full path to the file
+	return screenshot_dir .. "/" .. file_name
 end
 
-silicon.setup({
-    font = "JetBrains Mono=34;Noto Emoji",
-    output = generate_file_name,
-})
+function Open_local_screenshot_folder()
+	local project_root = get_git_root()
+	local screenshot_dir = project_root .. "/Screenshots"
 
--- {
--- 	-- the font settings with size and fallback font
--- 	-- the theme to use, depends on themes available to silicon
--- 	theme = "gruvbox-dark",
--- 	-- the background color outside the rendered os window
--- 	background = "#076678",
--- 	-- a path to a background image
--- 	background_image = nil,
--- 	-- the paddings to either side
--- 	pad_horiz = 100,
--- 	pad_vert = 80,
--- 	-- whether to have the os window rendered with rounded corners
--- 	no_round_corner = false,
--- 	-- whether to put the close, minimize, maximise traffic light controls on the border
--- 	no_window_controls = false,
--- 	-- whether to turn off the line numbers
--- 	no_line_number = false,
--- 	-- with which number the line numbering shall start, the default is 1, but here a
--- 	-- function is used to return the actual source code line number
--- 	line_offset = function(args)
--- 		return args.line1
--- 	end,
--- 	-- the distance between lines of code
--- 	line_pad = 0,
--- 	-- the rendering of tab characters as so many space characters
--- 	tab_width = 4,
--- 	-- with which language the syntax highlighting shall be done, should be a function
--- 	-- that returns either a language name or an extension like ".js"
--- 	language = function()
--- 		return vim.bo.filetype
--- 	end,
--- 	-- if the shadow below the os window should have be blurred
--- 	shadow_blur_radius = 16,
--- 	-- the offset of the shadow in x and y directions
--- 	shadow_offset_x = 8,
--- 	shadow_offset_y = 8,
--- 	-- the color of the shadow
--- 	shadow_color = "#100808",
--- 	-- whether to strip of superfluous leading whitespace
--- 	gobble = true,
--- 	-- a string or function that defines the path to the output image
--- 	output = function()
--- 		return "./" .. os.date("!%Y-%m-%dT%H-%M-%S") .. "_code.png"
--- 	end,
--- 	-- whether to put the image onto the clipboard, may produce an error if run on WSL2
--- 	to_clipboard = false,
--- 	-- the silicon command, put an absolute location here, if the command is not in your PATH
--- 	command = "silicon",
--- 	-- a string or function returning a string that defines the title showing in the image
--- 	-- only works in silicon versions greater than v0.5.1
--- 	window_title = function()
--- 		return vim.fn.fnamemodify(vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()), ":t")
--- 	end,
--- }
+	if os_name == supported_os.MACOS then
+		vim.fn.jobstart("open " .. screenshot_dir, { detach = true })
+		return
+	end
+
+	if os_name == supported_os.UNIX then
+		vim.fn.jobstart("xdg-open " .. screenshot_dir, { detach = true })
+		return
+	end
+
+	if os_name == supported_os.WINDOWS then
+		vim.fn.jobstart("explorer " .. screenshot_dir, { detach = true })
+		return
+	end
+end
+
+-- Keymaps
+local opts = { noremap = true, silent = true }
+
+opts.desc = "Silicon: Create screenshot of highlighted code"
+vim.api.nvim_set_keymap("v", "<leader>sc", ":'<,'>Silicon<CR>", opts)
+
+opts.desc = "Silicon: Open screenshots directory"
+vim.api.nvim_set_keymap("n", "<leader>so", "<cmd>lua Open_local_screenshot_folder()<cr>", opts)
+
+silicon.setup({
+	font = "JetBrains Mono=34;Noto Emoji",
+	output = generate_file_name,
+})
