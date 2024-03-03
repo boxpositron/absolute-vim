@@ -65,3 +65,11 @@ git clone https://github.com/boxpositron/absolute-vim ~/.config/nvim --depth 1 &
 - TreeSJ
 - Trouble
 - UndoTree
+
+## Keybindings
+
+### General
+
+| Keybinding | Description |
+
+|------------|-------------|
