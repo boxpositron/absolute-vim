@@ -26,16 +26,23 @@ git clone https://github.com/boxpositron/absolute-vim ~/.config/nvim --depth 1 &
 
 - [silicon](https://github.com/Aloxaf/silicon)
 
+> Fuzzy Finder
+
+- [fzf](https://github.com/junegunn/fzf)
+
 ### Fonts
 
 - [Noto Emoji](https://fonts.google.com/noto/specimen/Noto+Emoji)
 - [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono)
 
-## Plugins
+### Themes
 
-- CheatSheet
-- ColorScheme
-- Comment
+- [Tokyonight](https://github.com/folke/tokyonight.nvim)
+
+### Plugins
+
+- [CheatSheet](https://github.com/sudormrfbin/cheatsheet.nvim)
+- [Comment](https://github.com/numToStr/Comment.nvim)
 - DAP
 - Dashboard
 - GitIgnore
