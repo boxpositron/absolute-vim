@@ -64,7 +64,6 @@ git clone https://github.com/boxpositron/absolute-vim ~/.config/nvim --depth 1 &
 - NvimTreesitter
 - PoetV
 - SuperTab
-- TailwindCSS Colors
 - TailwindSorter
 - Telescope
 - TodoComments
