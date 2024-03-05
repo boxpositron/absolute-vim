@@ -1,16 +1,10 @@
 -- Setup language servers.
 local lspconfig = require("lspconfig")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
-local tailwind_colors = require("tailwindcss-colors")
 
 local opts = { noremap = true, silent = true }
 local on_attach = function(client, bufnr)
     opts.buffer = bufnr
-
-    -- Only attach when we are using the tailwindcss lsp
-    if client.name == "tailwindcss" then
-        tailwind_colors.buf_attach(bufnr)
-    end
 
     -- Enable completion triggered by <c-x><c-o>
     -- vim.bo[opts.buffer].omnifunc = "v:lua.vim.lsp.omnifunc"
