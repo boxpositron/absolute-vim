@@ -1,5 +1,6 @@
 local lualine = require("lualine")
-local lazy_status = require("lazy.status") -- to configure lazy pending updates count
+local lazy_status = require("lazy.status")     -- to configure lazy pending updates count
+local molten_status = require("molten.status") -- to configure molten statusline
 
 local colors = {
     blue = "#65D1FF",
@@ -45,7 +46,6 @@ local my_lualine_theme = {
     },
 }
 
-
 function GetPoetvStatusLine()
     -- Get the poetv statusline
     -- If poetv is not active, return empty string
@@ -80,6 +80,12 @@ lualine.setup({
     },
     sections = {
         lualine_x = {
+            {
+                molten_status.initialized,
+            },
+            {
+                molten_status.kernels,
+            },
             {
                 GetPoetvStatusLine,
                 cond = IsPoetvActive,
