@@ -79,14 +79,24 @@ vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, opts)
 opts.desc = "Regex Replace"
 vim.keymap.set("n", "<leader>sr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], opts)
 
-
 opts.desc = "Replace selected text"
 vim.keymap.set("v", "<leader>ss", [[:s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], opts)
 
 -- Source File Keymap
 opts.desc = "Source File"
 vim.keymap.set("n", "<leader><leader>", function()
-    vim.cmd("so")
+	-- Only source these file extensions
+	local allowed_extensions = [[".vim", ".lua", ".vimrc", ".gvimrc", ".nvim", ".nvimrc", ".sh"]]
+
+	-- Get the file extension
+	local file_extension = vim.fn.expand("%:e")
+
+	-- Check if the file extension is allowed
+	if string.find(allowed_extensions, file_extension) then
+		vim.cmd("so %")
+	else
+		print("Filetype not supported")
+	end
 end, opts)
 
 -- Manage VIM Maximizer
