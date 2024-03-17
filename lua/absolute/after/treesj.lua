@@ -1,10 +1,11 @@
 local tsj = require("treesj")
 
 tsj.setup({
-    use_default_keymaps = false,
+	use_default_keymaps = false,
+	max_join_length = 400,
 })
 
-local opts = {}
+local opts = { silent = true, noremap = true }
 
 opts.desc = "Toggle Treesitter Join"
 
