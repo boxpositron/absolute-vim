@@ -1,8 +1,8 @@
-require("mason").setup();
+require("mason").setup()
 require("mason-lspconfig").setup({
     ensure_installed = {
         "tsserver",
-        "eslint",
+        "biome",
         "rust_analyzer",
         "html",
         "emmet_ls",
