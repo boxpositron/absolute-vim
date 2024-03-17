@@ -123,7 +123,6 @@ lspconfig["pylsp"].setup({
                 jedi_completion = {
                     include_params = true,
                 },
-                pyflakes = { enabled = true },
                 pycodestyle = {
                     ignore = { "E231" },
                     maxLineLength = 150,
@@ -217,4 +216,22 @@ lspconfig["docker_compose_language_service"].setup({
 lspconfig["eslint"].setup({
     capabilities = capabilities,
     on_attach = on_attach,
+})
+
+-- configure biome server
+lspconfig["biome"].setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+    filetypes = {
+        "javascript",
+        "javascriptreact",
+        "json",
+        "jsonc",
+        "typescript",
+        "typescript.tsx",
+        "typescriptreact",
+        "astro",
+        "svelte",
+        "vue",
+    },
 })
