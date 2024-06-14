@@ -89,6 +89,19 @@ function IsPoetvActive()
     end
 end
 
+function IsMoltenActive()
+    -- Check if molten is active
+    -- If molten is active, then return true
+
+    -- Check if vim.fn.MoltenStatusLineInit is a function
+
+    if vim.fn.exists("*MoltenStatusLineInit") == 1 then
+        return molten_status.initialized
+    else
+        return false
+    end
+end
+
 -- configure lualine with modified theme
 lualine.setup({
     options = {
@@ -102,10 +115,9 @@ lualine.setup({
                 color = { fg = "#ff9e64" },
             },
             {
-                molten_status.initialized,
-            },
-            {
                 molten_status.kernels,
+                cond = IsMoltenActive,
+                color = { fg = "#ff9e64" },
             },
             {
                 GetPoetvStatusLine,
