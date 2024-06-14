@@ -2,6 +2,7 @@ local lualine = require("lualine")
 local lazy_status = require("lazy.status")     -- to configure lazy pending updates count
 local molten_status = require("molten.status") -- to configure molten statusline
 
+
 local colors = {
     blue = "#65D1FF",
     green = "#3EFFDC",
@@ -46,6 +47,21 @@ local my_lualine_theme = {
     },
 }
 
+function GetFlutterToolsStatusLine()
+    local application_version = vim.g.flutter_tools_decorations.app_version
+    local device = vim.g.flutter_tools_decorations.device
+
+    local result = "Flutter: " .. application_version .. " " .. device
+end
+
+function IsFlutterToolsActive()
+    if vim.g.flutter_tools_decorations ~= nil then
+        return true
+    else
+        return false
+    end
+end
+
 function GetPoetvStatusLine()
     -- Get the poetv statusline
     -- If poetv is not active, return empty string
@@ -80,6 +96,11 @@ lualine.setup({
     },
     sections = {
         lualine_x = {
+            {
+                GetFlutterToolsStatusLine,
+                cond = IsFlutterToolsActive,
+                color = { fg = "#ff9e64" },
+            },
             {
                 molten_status.initialized,
             },

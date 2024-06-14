@@ -37,10 +37,10 @@ local on_attach = function(client, bufnr)
     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
 
     opts.desc = "See available code actions"
-    vim.keymap.set({ "n", "v" }, "<leader>vca", vim.lsp.buf.code_action, opts)
+    vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 
     opts.desc = "Show LSP references"
-    vim.keymap.set("n", "<leader>vrr", "<cmd>Telescope lsp_references<CR>", opts)
+    vim.keymap.set("n", "<leader>cr", "<cmd>Telescope lsp_references<CR>", opts)
 
     opts.desc = "Format File"
     vim.keymap.set("n", "<leader>f", function()
@@ -122,10 +122,6 @@ lspconfig["pylsp"].setup({
                 flake8 = { enabled = true },
                 jedi_completion = {
                     include_params = true,
-                },
-                pycodestyle = {
-                    ignore = { "E231" },
-                    maxLineLength = 150,
                 },
             },
         },

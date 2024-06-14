@@ -11,6 +11,7 @@ require("mason-lspconfig").setup({
         "svelte",
         "cssls",
         "jedi_language_server",
+        "kotlin_language_server"
     },
     automatic_installation = true,
 })

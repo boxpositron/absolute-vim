@@ -62,18 +62,20 @@ vim.keymap.set("i", "<C-c>", "<Esc>", opts)
 opts.desc = "Disable Q - Nothing Good Ever Happens"
 vim.keymap.set("n", "Q", "<nop>", opts)
 
--- Format document with LSP Formatter
-
-opts.desc = "Format document with LSP Formatter"
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, opts)
-
 -- Navigation Quick Fixes
 --
--- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", opts)
--- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", opts)
--- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz", opts)
--- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", opts)
---
+opts.desc = "Jump up and center screen"
+vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", opts)
+
+opts.desc = "Jump down and center screen"
+vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", opts)
+
+opts.desc = "Jump to next location and center screen"
+vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz", opts)
+
+opts.desc = "Jump to previous location and center screen"
+vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", opts)
+
 
 -- Search Regex Keymap
 opts.desc = "Regex Replace"
@@ -85,20 +87,39 @@ vim.keymap.set("v", "<leader>ss", [[:s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 -- Source File Keymap
 opts.desc = "Source File"
 vim.keymap.set("n", "<leader><leader>", function()
-	-- Only source these file extensions
-	local allowed_extensions = [[".vim", ".lua", ".vimrc", ".gvimrc", ".nvim", ".nvimrc", ".sh"]]
+    -- Only source these file extensions
+    local allowed_extensions = [[".vim", ".lua", ".vimrc", ".gvimrc", ".nvim", ".nvimrc", ".sh"]]
 
-	-- Get the file extension
-	local file_extension = vim.fn.expand("%:e")
+    -- Get the file extension
+    local file_extension = vim.fn.expand("%:e")
 
-	-- Check if the file extension is allowed
-	if string.find(allowed_extensions, file_extension) then
-		vim.cmd("so %")
-	else
-		print("Filetype not supported")
-	end
+    -- Check if the file extension is allowed
+    if string.find(allowed_extensions, file_extension) then
+        vim.cmd("so %")
+    else
+        print("Filetype not supported")
+    end
 end, opts)
 
 -- Manage VIM Maximizer
 opts.desc = "Toggle TMUX Pane"
 vim.keymap.set("n", "<leader>`", "<cmd>NvimTreeToggle<CR>", opts)
+
+
+-- Optimize Window Resize
+
+-- Resize Window Right
+opts.desc = "Resize Window Right"
+vim.keymap.set("n", "<leader>l", "<C-w>10>", opts)
+
+-- Resize Window Left
+opts.desc = "Resize Window Left"
+vim.keymap.set("n", "<leader>h", "<C-w>10<", opts)
+
+-- Resize Window Up
+opts.desc = "Resize Window Up"
+vim.keymap.set("n", "<leader>k", "<C-w>10-", opts)
+
+-- Resize Window Down
+opts.desc = "Resize Window Down"
+vim.keymap.set("n", "<leader>j", "<C-w>10+", opts)
