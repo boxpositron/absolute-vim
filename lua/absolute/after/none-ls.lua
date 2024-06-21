@@ -18,13 +18,11 @@ function ResolvePythonEnvironment()
     if virtual == nil then
         -- Check if poetry environment exists
 
-        print("No virtual environment detected, using system python")
         return {
             "--python-executable", python
         }
     end
 
-    print("Using virtual environment: " .. virtual)
     return {
         "--python-executable", virtual .. "/bin/python3"
     }
