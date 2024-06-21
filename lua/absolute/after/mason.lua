@@ -2,6 +2,7 @@ require("mason").setup()
 require("mason-lspconfig").setup({
     ensure_installed = {
         "tsserver",
+        "astro",
         "biome",
         "rust_analyzer",
         "html",
