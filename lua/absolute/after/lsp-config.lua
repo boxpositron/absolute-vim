@@ -7,7 +7,7 @@ local on_attach = function(client, bufnr)
     opts.buffer = bufnr
 
     -- Enable completion triggered by <c-x><c-o>
-    -- vim.bo[opts.buffer].omnifunc = "v:lua.vim.lsp.omnifunc"
+    vim.bo[opts.buffer].omnifunc = "v:lua.vim.lsp.omnifunc"
 
     opts.desc = "Go to declaration"
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
@@ -54,7 +54,13 @@ end
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
 -- Change the Diagnostic symbols in the sign column (gutter)
-local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+local signs = {
+    Error = " ",
+    Warn = " ",
+    Hint = "󰠠 ",
+    Info = " ",
+}
+
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
@@ -210,6 +216,19 @@ lspconfig["docker_compose_language_service"].setup({
 
 -- configure eslint server
 lspconfig["eslint"].setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+})
+
+-- configure astro server
+lspconfig["astro"].setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+})
+
+
+-- configure kotlin server
+lspconfig["kotlin_language_server"].setup({
     capabilities = capabilities,
     on_attach = on_attach,
 })
