@@ -1,6 +1,5 @@
 local lualine = require("lualine")
-local lazy_status = require("lazy.status")     -- to configure lazy pending updates count
-local molten_status = require("molten.status") -- to configure molten statusline
+local lazy_status = require("lazy.status") -- to configure lazy pending updates count
 
 
 local colors = {
@@ -89,19 +88,6 @@ function IsPoetvActive()
     end
 end
 
-function IsMoltenActive()
-    -- Check if molten is active
-    -- If molten is active, then return true
-
-    -- Check if vim.fn.MoltenStatusLineInit is a function
-
-    if vim.fn.exists("*MoltenStatusLineInit") == 1 then
-        return molten_status.initialized
-    else
-        return false
-    end
-end
-
 -- configure lualine with modified theme
 lualine.setup({
     options = {
@@ -112,11 +98,6 @@ lualine.setup({
             {
                 GetFlutterToolsStatusLine,
                 cond = IsFlutterToolsActive,
-                color = { fg = "#ff9e64" },
-            },
-            {
-                molten_status.kernels,
-                cond = IsMoltenActive,
                 color = { fg = "#ff9e64" },
             },
             {
