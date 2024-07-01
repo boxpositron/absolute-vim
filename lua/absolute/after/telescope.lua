@@ -23,8 +23,14 @@ telescope.setup({
             },
         },
     },
+    extensions = {
+        file_browser = {
+            hijack_netrw = true,
+        }
+    }
 })
 
+telescope.load_extension("file_browser")
 telescope.load_extension("flutter")
 telescope.load_extension("dap")
 
@@ -35,9 +41,21 @@ local find_files = function()
     })
 end
 
-vim.keymap.set("n", "<leader>pf", find_files, { desc = "Fuzzy find files in cwd" })
-vim.keymap.set("n", "<leader>pr", builtin.oldfiles, { desc = "Fuzzy find recent files" })
-vim.keymap.set("n", "<C-p>", builtin.git_files, { desc = "Fuzzy find files in git in cwd" })
+local opts = { noremap = true, silent = true }
+
+opts.desc = "Open file browswer"
+vim.keymap.set("n", "<leader>`", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>", opts)
+
+opts.desc = "Fuzzy find files in cwd"
+vim.keymap.set("n", "<leader>pf", find_files, opts)
+
+opts.desc = "Fuzzy find recent files"
+vim.keymap.set("n", "<leader>pr", builtin.oldfiles, opts)
+
+opts.desc = "Fuzzy find files in git in cwd"
+vim.keymap.set("n", "<C-p>", builtin.git_files, opts)
+
+opts.desc = "Fuzzy find string under cursor in cwd"
 vim.keymap.set("n", "<leader>ps", function()
     builtin.grep_string({ search = vim.fn.input("Grep > ") })
-end, { desc = "Find string under cursor in cwd" })
+end, opts)
