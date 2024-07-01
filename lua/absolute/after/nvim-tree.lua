@@ -1,4 +1,4 @@
-local nvimtree = require("nvim-tree")
+local nvimtree = require("absolute.disabled.nvim-tree")
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
