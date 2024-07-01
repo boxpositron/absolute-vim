@@ -101,11 +101,6 @@ vim.keymap.set("n", "<leader><leader>", function()
     end
 end, opts)
 
--- Manage VIM Maximizer
-opts.desc = "Toggle TMUX Pane"
-vim.keymap.set("n", "<leader>`", "<cmd>NvimTreeToggle<CR>", opts)
-
-
 -- Optimize Window Resize
 
 -- Resize Window Right
