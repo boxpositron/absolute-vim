@@ -21,10 +21,7 @@ telescope.setup({
 local opts = { noremap = true, silent = true }
 
 opts.desc = "Trouble: Open Document Diagnostics"
-vim.keymap.set("n", "<leader>td", "<cmd>TroubleToggle document_diagnostics<CR>", opts)
-
-opts.desc = "Trouble: Open Workspace Diagnostics"
-vim.keymap.set("n", "<leader>tw", "<cmd>TroubleToggle workspace_diagnostics<CR>", opts)
+vim.keymap.set("n", "<leader>td", "<cmd>Trouble diagnostics toggle<CR>", opts)
 
 opts.desc = "Trouble: Open Quickfix List"
-vim.keymap.set("n", "<leader>tq", "<cmd>TroubleToggle quickfix<CR>", opts)
+vim.keymap.set("n", "<leader>tq", "<cmd>Trouble qflist toggle<CR>", opts)
