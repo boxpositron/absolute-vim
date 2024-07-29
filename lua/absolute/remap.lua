@@ -97,7 +97,7 @@ vim.keymap.set("n", "<leader><leader>", function()
     if string.find(allowed_extensions, file_extension) then
         vim.cmd("so %")
     else
-        print("Filetype not supported")
+        vim.notify("Filetype not supported", vim.log.levels.ERROR)
     end
 end, opts)
 
