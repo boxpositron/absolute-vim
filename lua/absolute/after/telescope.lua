@@ -26,14 +26,23 @@ telescope.setup({
     extensions = {
         file_browser = {
             hijack_netrw = true,
-        }
-    }
+            hide_parent_dir = true,
+            depth = 1,
+            respect_gitignore = false,
+            auto_depth = true,
+            display_stat = {
+                date = true,
+                size = true,
+                mode = false,
+            },
+        },
+    },
 })
 
 telescope.load_extension("file_browser")
 telescope.load_extension("flutter")
 telescope.load_extension("dap")
-
+telescope.load_extension("themes")
 
 local find_files = function()
     builtin.find_files({
@@ -43,10 +52,13 @@ end
 
 local opts = { noremap = true, silent = true }
 
-opts.desc = "Open file browswer"
-vim.keymap.set("n", "<leader>`", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>", opts)
+opts.desc = "Open file browser (cwd)"
+vim.keymap.set("n", "<leader>af", "<cmd>Telescope file_browser<CR>", opts)
 
-opts.desc = "Fuzzy find files in cwd"
+opts.desc = "Open file browser (current file)"
+vim.keymap.set("n", "<leader>cf", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>", opts)
+
+opts.desc = "Fuzzy find files (cwd)"
 vim.keymap.set("n", "<leader>pf", find_files, opts)
 
 opts.desc = "Fuzzy find recent files"
