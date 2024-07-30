@@ -1,3 +1,7 @@
+-- disable nvim intro
+vim.opt.shortmess:append "sI"
+
+
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
