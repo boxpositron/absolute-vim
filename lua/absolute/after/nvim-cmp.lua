@@ -5,9 +5,33 @@ local lspkind = require("lspkind")
 -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
 require("luasnip.loaders.from_vscode").lazy_load()
 
+local function border(hl_name)
+    return {
+        { "╭", hl_name },
+        { "─", hl_name },
+        { "╮", hl_name },
+        { "│", hl_name },
+        { "╯", hl_name },
+        { "─", hl_name },
+        { "╰", hl_name },
+        { "│", hl_name },
+    }
+end
+
 cmp.setup({
     completion = {
         completeopt = "menu,menuone,preview,noselect",
+    },
+    window = {
+        completion = {
+            side_padding = 1,
+            winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:None",
+            scrollbar = false,
+        },
+        documentation = {
+            border = border "CmpDocBorder",
+            winhighlight = "Normal:CmpDoc",
+        },
     },
     snippet = { -- configure how nvim-cmp interacts with snippet engine
         expand = function(args)
