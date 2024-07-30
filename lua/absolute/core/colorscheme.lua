@@ -1,6 +1,7 @@
 local function SetupWindowPreferences()
     vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 end
 
 
@@ -34,7 +35,7 @@ local function SyncWezTerm()
             assert(file)
             file:write(colorscheme)
             file:close()
-            -- vim.notify("Setting WezTerm color scheme to " .. colorscheme, vim.log.levels.INFO)
+            vim.notify("Setting WezTerm color scheme to " .. colorscheme, vim.log.levels.INFO)
         end,
     })
 end
