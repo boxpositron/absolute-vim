@@ -1,3 +1,9 @@
+local lua_utils = require("absolute.utils.detect-lua")
+
+package.path = package.path .. lua_utils.GetLatestLuaVersion()
+
+
+
 -- disable nvim intro
 vim.opt.shortmess:append "sI"
 
@@ -37,6 +43,7 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = ""
 
+vim.o.completeopt = "menuone"
 vim.g.mapleader = " "
 vim.g.maplocalleader = ";"
 

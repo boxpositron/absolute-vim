@@ -2,6 +2,8 @@
 local lspconfig = require("lspconfig")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
+local DPE = require("absolute.utils.detect-python-env")
+
 local opts = { noremap = true, silent = true }
 local on_attach = function(client, bufnr)
     opts.buffer = bufnr
@@ -73,7 +75,7 @@ lspconfig["html"].setup({
 })
 
 -- configure typescript server with plugin
-lspconfig["tsserver"].setup({
+lspconfig["ts_ls"].setup({
     capabilities = capabilities,
     on_attach = on_attach,
 })
@@ -111,8 +113,20 @@ lspconfig["svelte"].setup({
 lspconfig["emmet_ls"].setup({
     capabilities = capabilities,
     on_attach = on_attach,
-    filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte", "vue" },
+    filetypes = {
+        "html",
+        "typescriptreact",
+        "javascriptreact",
+        "css",
+        "sass",
+        "scss",
+        "less",
+        "svelte",
+        "vue",
+    },
 })
+
+
 -- configure python lsp
 lspconfig["pylsp"].setup({
     filetypes = { "python" },
@@ -124,22 +138,29 @@ lspconfig["pylsp"].setup({
                 rope_autoimport = {
                     enabled = true,
                     completions = { enabled = true },
+                    rename = { enabled = false },
                 },
+                black = { enabled = true },
+                autopep8 = { enabled = false },
+                yapf = { enabled = false },
                 flake8 = { enabled = true },
                 jedi_completion = {
+                    enabled = true,
                     include_params = true,
+                    fuzzy = true,
                 },
+                pylsp_mypy = {
+                    enabled = true,
+                    overrides = DPE.ResolvePythonEnvironment(),
+                    report_progress = true,
+                    live_mode = true,
+                },
+                -- import sorting
+                pyls_isort = { enabled = true },
             },
         },
     },
 })
---
--- -- configure jedi language server
--- lspconfig["jedi_language_server"].setup({
---     capabilities = capabilities,
---     on_attach = on_attach,
--- 	})
-
 -- configure docker server
 lspconfig["dockerls"].setup({
     capabilities = capabilities,
@@ -226,9 +247,23 @@ lspconfig["astro"].setup({
     on_attach = on_attach,
 })
 
-
 -- configure kotlin server
 lspconfig["kotlin_language_server"].setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+})
+
+
+-- configure clang server
+
+lspconfig["clangd"].setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+})
+
+-- configure arduino language server
+
+lspconfig["arduino_language_server"].setup({
     capabilities = capabilities,
     on_attach = on_attach,
 })

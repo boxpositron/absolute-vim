@@ -1,6 +1,6 @@
 local lualine = require("lualine")
 local lazy_status = require("lazy.status") -- to configure lazy pending updates count
-
+local noice = require("noice")
 
 local colors = {
     blue = "#65D1FF",
@@ -94,23 +94,12 @@ lualine.setup({
         theme = my_lualine_theme,
     },
     sections = {
-        -- lualine_c = {
-        --     -- ...other lualine components
-        --     {
-        --         require('tmux-status').tmux_windows,
-        --         cond = require('tmux-status').show,
-        --         padding = { left = 3 },
-        --     },
-        -- },
-        -- lualine_z = {
-        --     -- ...other lualine components
-        --     {
-        --         require('tmux-status').tmux_session,
-        --         cond = require('tmux-status').show,
-        --         padding = { left = 3 },
-        --     },
-        -- },
         lualine_x = {
+            {
+                noice.api.statusline.mode.get,
+                cond = noice.api.statusline.mode.has,
+                color = { fg = "#ff9e64" },
+            },
             {
                 GetFlutterToolsStatusLine,
                 cond = IsFlutterToolsActive,

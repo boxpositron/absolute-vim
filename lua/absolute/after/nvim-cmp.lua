@@ -1,36 +1,26 @@
 local cmp = require("cmp")
+local types = require('cmp.types')
 local luasnip = require("luasnip")
 local lspkind = require("lspkind")
 
 -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
 require("luasnip.loaders.from_vscode").lazy_load()
 
-local function border(hl_name)
-    return {
-        { "╭", hl_name },
-        { "─", hl_name },
-        { "╮", hl_name },
-        { "│", hl_name },
-        { "╯", hl_name },
-        { "─", hl_name },
-        { "╰", hl_name },
-        { "│", hl_name },
-    }
-end
-
 cmp.setup({
     completion = {
-        completeopt = "menu,menuone,preview,noselect",
+        completeopt = "menu,menuone,preview,noinsert",
+        autocomplete = { types.cmp.TriggerEvent.TextChanged },
     },
     window = {
+        documentation = {
+            border = { '┌', '─', '┐', '│', '┘', '─', '└', '│' },
+            winhighlight = 'Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None',
+        },
         completion = {
             side_padding = 1,
-            winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:None",
+            border = { '┌', '─', '┐', '│', '┘', '─', '└', '│' },
+            winhighlight = 'Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None',
             scrollbar = false,
-        },
-        documentation = {
-            border = border "CmpDocBorder",
-            winhighlight = "Normal:CmpDoc",
         },
     },
     snippet = { -- configure how nvim-cmp interacts with snippet engine
@@ -39,16 +29,17 @@ cmp.setup({
         end,
     },
     mapping = cmp.mapping.preset.insert({
-        ["<C-Space>"] = cmp.mapping.complete(),            -- show completion suggestions
+        ["<C-o>"] = cmp.mapping.complete(),                -- show completion suggestions
+        ["<C-e>"] = cmp.mapping.abort(),                   -- close completion menu
         ["<CR>"] = cmp.mapping.confirm({ select = true }), -- accept current selection
     }),
     -- sources for autocompletion
     sources = cmp.config.sources({
-        { name = "otter" },   -- custom source for otter completion
         { name = "nvim_lsp" },
         { name = "luasnip" }, -- snippets
         { name = "buffer" },  -- text within current buffer
-        { name = "path" },    -- file system paths
+        { name = "path" },    -- file system paths,
+        { name = 'nvim_lsp_signature_help' },
     }),
     -- configure lspkind for vs-code like pictograms in completion menu
     formatting = {

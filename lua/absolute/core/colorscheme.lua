@@ -1,10 +1,23 @@
 local function SetupWindowPreferences()
-    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-    vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+    -- Utility function to get the blend value or set a default
+    local function get_blend_value(group_name, default_blend)
+        -- Retrieve highlight settings for the group using the new API
+        local current_highlight = vim.api.nvim_get_hl(0, { name = group_name })
+        return current_highlight.blend or default_blend
+    end
+
+    -- Set the Normal group with dynamic blend
+    local normal_blend = get_blend_value("Normal", 50)
+    vim.api.nvim_set_hl(0, "Normal", { bg = "none", blend = normal_blend })
+
+    -- Set the NormalFloat group with dynamic blend
+    local normal_float_blend = get_blend_value("NormalFloat", 50)
+    vim.api.nvim_set_hl(1, "NormalFloat", { bg = "none", blend = normal_float_blend })
+
+    -- Set the NormalNC group with dynamic blend
+    local normal_nc_blend = get_blend_value("NormalNC", 50)
+    vim.api.nvim_set_hl(0, "NormalNC", { bg = "none", blend = normal_nc_blend })
 end
-
-
 
 local colorschemes = {
     ["tokyonight-day"] = "Tokyo Night Day",
@@ -35,7 +48,7 @@ local function SyncWezTerm()
             assert(file)
             file:write(colorscheme)
             file:close()
-            vim.notify("Setting WezTerm color scheme to " .. colorscheme, vim.log.levels.INFO)
+            -- vim.notify("Setting WezTerm color scheme to " .. colorscheme, vim.log.levels.INFO)
         end,
     })
 end
