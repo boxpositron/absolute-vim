@@ -1,7 +1,7 @@
-local opts = { noremap = true, silent = true }
-
-opts.desc = "Show Cheatsheet"
-vim.keymap.set("n", "<leader>\\", "<cmd>Cheatsheet<CR>", opts) -- toggle file explorer
+local opts = {
+    noremap = true,
+    silent = true,
+}
 
 opts.desc = "Show Keymap"
 vim.keymap.set("n", "<leader>?", "<cmd>Telescope keymaps<CR>", opts) -- toggle file explorer
@@ -53,10 +53,6 @@ vim.keymap.set("n", "<leader>Y", [["+Y]], opts)
 opts.desc = "Delete current line (blackhole)"
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], opts)
 
--- Alternate Escape (Easy to Reach)
-opts.desc = "Alternate Escape (Easy to Reach)"
-vim.keymap.set("i", "<C-c>", "<Esc>", opts)
-
 -- Disable Q - Nothing Good Ever Happens
 -- Q is normally used to enable Ex mode. We dont want that
 opts.desc = "Disable Q - Nothing Good Ever Happens"
@@ -88,7 +84,15 @@ vim.keymap.set("v", "<leader>ss", [[:s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 opts.desc = "Source File"
 vim.keymap.set("n", "<leader><leader>", function()
     -- Only source these file extensions
-    local allowed_extensions = [[".vim", ".lua", ".vimrc", ".gvimrc", ".nvim", ".nvimrc", ".sh"]]
+    local allowed_extensions = [[
+        ".vim",
+        ".lua",
+        ".vimrc",
+        ".gvimrc",
+        ".nvim",
+        ".nvimrc",
+        ".sh"
+    ]]
 
     -- Get the file extension
     local file_extension = vim.fn.expand("%:e")
@@ -96,6 +100,7 @@ vim.keymap.set("n", "<leader><leader>", function()
     -- Check if the file extension is allowed
     if string.find(allowed_extensions, file_extension) then
         vim.cmd("so %")
+        vim.notify("Sourced file", vim.log.levels.INFO)
     else
         vim.notify("Filetype not supported", vim.log.levels.ERROR)
     end
