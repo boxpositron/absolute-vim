@@ -2,9 +2,8 @@
 
 ## Introduction
 
-Here's the VIM configuration I'm going to be using for most of my professional work this year.
-There may be changes as I discover new plugins. I intent to personalize this to my taste and
-coding conventions. Feel free to try it out if you fancy 😄.
+VIM Configurations for the modern developer. This configuration is designed to be efficient for my personal workflow. It is designed to be minimalistic and easy to use.
+
 
 ## Installation
 
