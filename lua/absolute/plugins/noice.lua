@@ -10,6 +10,6 @@ return {
         "rcarriga/nvim-notify",
     },
     config = function()
-        require("absolute.after.noice")
+        -- require("absolute.after.noice")
     end,
 }
