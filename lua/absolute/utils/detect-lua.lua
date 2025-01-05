@@ -1,33 +1,33 @@
 function GetLuaPath(version)
-    local path = vim.fn.expand("$HOME") .. "/.luarocks/share/lua/" .. version .. "/?.lua;"
-    path = path .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/" .. version .. "/?/init.lua;"
-    return path
+	local path = vim.fn.expand("$HOME") .. "/.luarocks/share/lua/" .. version .. "/?.lua;"
+	path = path .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/" .. version .. "/?/init.lua;"
+	return path
 end
 
 function GetInstalledLuaVersion()
-    -- List the directory contents of the lua rocks directory
-    local rocks = vim.fn.glob(vim.fn.expand("$HOME") .. "/.luarocks/share/lua/")
+	-- List the directory contents of the lua rocks directory
+	local rocks = vim.fn.glob(vim.fn.expand("$HOME") .. "/.luarocks/share/lua/")
 
-    -- Split the string into a table
+	-- Split the string into a table
 
-    rocks = vim.split(rocks, "\n")
+	rocks = vim.split(rocks, "\n")
 
-    -- Sort the table highest to lowest
+	-- Sort the table highest to lowest
 
-    table.sort(rocks, function(a, b)
-        return tonumber(a) > tonumber(b)
-    end)
+	table.sort(rocks, function(a, b)
+		return tonumber(a) > tonumber(b)
+	end)
 
-    return rocks
+	return rocks
 end
 
 function GetLatestLuaVersion()
-    local rocks = GetInstalledLuaVersion()
-    local preferredVersion = rocks[1]
+	local rocks = GetInstalledLuaVersion()
+	local preferredVersion = rocks[1]
 
-    local path = GetLuaPath(preferredVersion)
+	local path = GetLuaPath(preferredVersion)
 
-    return path
+	return path
 end
 
 M = {}
