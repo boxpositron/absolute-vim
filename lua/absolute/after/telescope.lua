@@ -3,12 +3,7 @@ local builtin = require("telescope.builtin")
 local actions = require("telescope.actions")
 local trouble = require("trouble.sources.telescope")
 local file_browser_actions = require("telescope._extensions.file_browser.actions")
-
-local find_files = function()
-    builtin.find_files({
-        find_command = { "rg", "--files", "--hidden", "--glob", "!.git" },
-    })
-end
+local live_grep_shortcuts = require("telescope-live-grep-args.shortcuts")
 
 telescope.setup({
     defaults = {
@@ -86,12 +81,41 @@ telescope.setup({
     },
 })
 
+
+telescope.load_extension("live_grep_args")
 telescope.load_extension("file_browser")
 telescope.load_extension("flutter")
 telescope.load_extension("dap")
 telescope.load_extension("themes")
 
+local find_files = function()
+    builtin.find_files({
+        find_command = { "rg", "--files", "--hidden", "--glob", "!.git" },
+    })
+end
 
+local default_grep_files = function()
+    local input = vim.fn.input("Global Search > ")
+    local trimmed_input = vim.fn.trim(input)
+
+    -- Check the length of the input
+
+    -- If the input is empty, return
+
+    if trimmed_input == "" then
+        return
+    end
+
+    local live_grep_args = telescope.extensions.live_grep_args
+
+    live_grep_args.live_grep_args({
+        default_text = trimmed_input,
+    })
+end
+
+-- Function to get the visually selected text
+
+-- Pipe the visual selection into Telescope find_files
 local opts = { noremap = true, silent = true }
 
 opts.desc = "Open file browser (cwd)"
@@ -109,7 +133,8 @@ vim.keymap.set("n", "<leader>pr", builtin.oldfiles, opts)
 opts.desc = "Fuzzy find files in git in cwd"
 vim.keymap.set("n", "<leader>gf", builtin.git_files, opts)
 
-opts.desc = "Fuzzy find string under cursor in cwd"
-vim.keymap.set("n", "<leader>ps", function()
-    builtin.grep_string({ search = vim.fn.input("Global Search") })
-end, opts)
+opts.desc = "Fuzzy find files in cwd"
+vim.keymap.set("n", "<leader>ps", default_grep_files, opts)
+
+opts.desc = "Fuzzy find word under cursor in cwd"
+vim.keymap.set("n", "<leader>sb", live_grep_shortcuts.grep_word_under_cursor, opts)
