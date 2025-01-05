@@ -2,7 +2,9 @@ local lua_utils = require("absolute.utils.detect-lua")
 
 package.path = package.path .. lua_utils.GetLatestLuaVersion()
 
-vim.g.python3_host_prog = "/Users/davidibia/.pyenv/versions/py3nvim/bin/python"
+local current_home = os.getenv("HOME")
+
+vim.g.python3_host_prog = current_home .. "/.pyenv/versions/py3nvim/bin/python"
 
 -- disable nvim intro
 vim.opt.shortmess:append("sI")
