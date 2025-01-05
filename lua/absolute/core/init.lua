@@ -2,11 +2,10 @@ local lua_utils = require("absolute.utils.detect-lua")
 
 package.path = package.path .. lua_utils.GetLatestLuaVersion()
 
-
+vim.g.python3_host_prog = "/Users/davidibia/.pyenv/versions/py3nvim/bin/python"
 
 -- disable nvim intro
-vim.opt.shortmess:append "sI"
-
+vim.opt.shortmess:append("sI")
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -48,27 +47,27 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = ";"
 
 vim.opt.guicursor = "n-v-c:block,i-ci-ve:block,r-cr:hor20,o:hor50,"
-    .. "a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,"
-    .. "sm:block-blinkwait175-blinkoff150-blinkon175"
+	.. "a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,"
+	.. "sm:block-blinkwait175-blinkoff150-blinkon175"
 
 -- Function to change cursor color
 local function set_cursor_color(color)
-    vim.api.nvim_set_hl(0, "Cursor", { fg = color, bg = color })
+	vim.api.nvim_set_hl(0, "Cursor", { fg = color, bg = color })
 end
 
 -- Autocommands to change cursor color based on mode
 vim.api.nvim_create_autocmd("InsertEnter", {
-    pattern = "*",
-    callback = function()
-        set_cursor_color("#ffffff") -- Red in insert mode
-    end,
+	pattern = "*",
+	callback = function()
+		set_cursor_color("#ffffff") -- Red in insert mode
+	end,
 })
 
 vim.api.nvim_create_autocmd("InsertLeave", {
-    pattern = "*",
-    callback = function()
-        set_cursor_color("#7DF9FF") -- Blue in visual mode
-    end,
+	pattern = "*",
+	callback = function()
+		set_cursor_color("#7DF9FF") -- Blue in visual mode
+	end,
 })
 
 -- Add similar autocommands for other modes as needed
