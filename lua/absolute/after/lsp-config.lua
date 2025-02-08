@@ -337,7 +337,6 @@ local ResolveTypescriptServer = function()
 		return nil
 	end
 
-	vim.notify("Using TypeScript server from " .. typescript_path, vim.log.levels.WARN)
 	return typescript_path
 end
 
