@@ -1,6 +1,5 @@
 local lualine = require("lualine")
 local lazy_status = require("lazy.status") -- to configure lazy pending updates count
-local noice = require("noice")
 
 local colors = {
 	blue = "#65D1FF",
@@ -80,11 +79,6 @@ lualine.setup({
 	},
 	sections = {
 		lualine_x = {
-			{
-				noice.api.statusline.mode.get,
-				cond = noice.api.statusline.mode.has,
-				color = { fg = "#ff9e64" },
-			},
 			{
 				GetPoetvStatusLine,
 				cond = IsPoetvActive,
