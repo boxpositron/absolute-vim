@@ -4,7 +4,7 @@ conform.setup({
 	format_on_save = function(bufnr)
 		local disable_filetypes = {}
 		return {
-			timeout_ms = 5000,
+			timeout_ms = 500,
 			lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
 		}
 	end,
@@ -14,8 +14,8 @@ conform.setup({
 		python = { "isort", "black" },
 		-- Use a sub-list to run only the first available formatter
 		javascript = { "biome" },
-		astro = { "prettier", "biome" },
-		vue = { "prettier" },
+		astro = { "prettierd", "prettier", "biome" },
+		vue = { "prettierd", "prettier" },
 	},
 })
 
