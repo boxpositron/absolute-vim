@@ -6,8 +6,36 @@ local file_browser_actions = require("telescope._extensions.file_browser.actions
 local live_grep_shortcuts = require("telescope-live-grep-args.shortcuts")
 local live_grep_actions = require("telescope-live-grep-args.actions")
 
+local image_preview = require("absolute.utils.telescope_image_preview")
+
+-- local function chafa_previewer_mime_hook(filepath, bufnr, opts)
+-- 	local is_image = function(current_filepath)
+-- 		local image_extensions = { "png", "jpg", "jpeg", "gif" } -- Supported image formats
+-- 		local split_path = vim.split(current_filepath:lower(), ".", { plain = true })
+-- 		local extension = split_path[#split_path]
+-- 		return vim.tbl_contains(image_extensions, extension)
+-- 	end
+-- 	if is_image(filepath) then
+-- 		local term = vim.api.nvim_open_term(bufnr, {})
+-- 		local function send_output(_, data, _)
+-- 			for _, d in ipairs(data) do
+-- 				vim.api.nvim_chan_send(term, d .. "\r\n")
+-- 			end
+-- 		end
+-- 		vim.fn.jobstart("chafa --passthrough tmux --exact-size off --format=symbols " .. filepath, {
+-- 			on_stdout = send_output,
+-- 			stdout_buffered = true,
+-- 		})
+-- 	else
+-- 		require("telescope.previewers.utils").set_preview_message(bufnr, opts.winid, "Binary cannot be previewed")
+-- 	end
+-- end
+
 telescope.setup({
 	defaults = {
+		file_previewer = image_preview.file_previewer,
+		buffer_previewer_maker = image_preview.buffer_previewer_maker,
+
 		vimgrep_arguments = {
 			"rg",
 			"--color=never",
@@ -32,6 +60,10 @@ telescope.setup({
 		},
 	},
 	extensions = {
+		media_files = {
+			filetypes = { "png", "webp", "jpg", "jpeg" },
+			find_cmd = "rg",
+		},
 		live_grep_args = {
 			auto_quoting = false,
 			mappings = {
@@ -96,9 +128,10 @@ telescope.setup({
 
 telescope.load_extension("live_grep_args")
 telescope.load_extension("file_browser")
+telescope.load_extension("media_files")
 telescope.load_extension("flutter")
-telescope.load_extension("dap")
 telescope.load_extension("themes")
+telescope.load_extension("dap")
 
 local find_files = function()
 	builtin.find_files({
