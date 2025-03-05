@@ -360,6 +360,15 @@ lspconfig["kotlin_language_server"].setup({
 -- configure clang server
 
 lspconfig["clangd"].setup({
+	cmd = { "clangd", "--compile-commands-dir=./", "--background-index=false" },
+	capabilities = capabilities,
+	on_attach = on_attach,
+	filetypes = { "c", "cpp", "objc", "objcpp" },
+})
+
+-- configure bufls server
+
+lspconfig["buf_ls"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })
