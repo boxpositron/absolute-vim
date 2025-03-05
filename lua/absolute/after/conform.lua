@@ -16,6 +16,8 @@ conform.setup({
 		javascript = { "biome" },
 		astro = { "prettierd", "prettier", "biome" },
 		vue = { "prettierd", "prettier" },
+		proto = { "buf" },
+		yaml = { "prettierd", "prettier" },
 	},
 })
 
