@@ -1,7 +1,8 @@
 return {
-    "echasnovski/mini.nvim",
-    version = "*", -- Stable Version
-    config = function()
-        require("absolute.after.mini")
-    end
+	"echasnovski/mini.nvim",
+	enabled = false,
+	version = "*", -- Stable Version
+	config = function()
+		require("absolute.after.mini")
+	end,
 }
