@@ -129,7 +129,6 @@ telescope.setup({
 telescope.load_extension("live_grep_args")
 telescope.load_extension("file_browser")
 telescope.load_extension("media_files")
-telescope.load_extension("flutter")
 telescope.load_extension("themes")
 telescope.load_extension("dap")
 
