@@ -11,7 +11,7 @@ local vue_language_server_path = mason_registry.get_package("vue-language-server
 local opts = { noremap = true, silent = true }
 
 -- client, buffer
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
 	opts.buffer = bufnr
 
 	-- Enable completion triggered by <c-x><c-o>
@@ -62,6 +62,13 @@ local on_attach = function(_, bufnr)
 
 	opts.desc = "Restart LSP"
 	vim.keymap.set("n", "<leader>rs", "<cmd>LspRestart<CR>", opts)
+
+	-- LSP Only Settings
+	-- Ruff & Pyright behaviour
+	if client.name == "ruff" then
+		-- Disable hover in favor of Pyright
+		client.server_capabilities.hoverProvider = false
+	end
 end
 
 local capabilities = cmp_nvim_lsp.default_capabilities()
@@ -181,6 +188,12 @@ lspconfig["emmet_ls"].setup({
 -- 		},
 -- 	},
 -- })
+
+-- configure ruff server
+lspconfig["ruff"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
 
 -- configure pyright server
 lspconfig["pyright"].setup({
