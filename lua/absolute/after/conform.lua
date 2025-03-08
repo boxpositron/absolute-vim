@@ -11,7 +11,15 @@ conform.setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
 		-- Conform will run multiple formatters sequentially
-		python = { "isort", "black" },
+		python = {
+
+			-- To fix auto-fixable lint errors.
+			"ruff_fix",
+			-- To run the Ruff formatter.
+			"ruff_format",
+			-- To organize the imports.
+			"ruff_organize_imports",
+		},
 		-- Use a sub-list to run only the first available formatter
 		javascript = { "biome" },
 		astro = { "prettierd", "prettier", "biome" },
